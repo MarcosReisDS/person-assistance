@@ -1,0 +1,54 @@
+.container-settings {
+    &>.container {
+        &>.logo {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+
+            &>a {
+                color: #fff;
+                padding: 40px 20px;
+
+                &>svg {
+                    transform: rotate(180deg);
+                }
+            }
+
+            &>img {
+                width: 68%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+
+        &>.container-editar {
+            padding: 0px 50px;
+
+            &>.inputs {
+                display: flex;
+                flex-direction: column;
+                gap: 30px;
+                &>input {
+                    width: 100%;
+                    height: 60px;
+                    border-radius: 10px;
+                    border: none;
+                    box-shadow: 1px 3px 5px rgba(0, 0, 0, 25%);
+                }
+            }
+            &>.buttons {
+                display: flex;
+                margin-top: 90px;
+                &>a {
+                    padding: 20px 30px;
+                    background-color: #5E17EB;
+                    border-radius: 10px;
+                    text-decoration: none;
+                    color: #fff;
+                    font-size: 15px;
+                    box-shadow: 1px 3px 5px rgba(0, 0, 0, 25%);
+                }
+            }
+        }
+    }
+}
