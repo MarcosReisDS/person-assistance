@@ -2,15 +2,12 @@ import { FC } from "react";
 import "./styles.scss"
 
 interface IButton {
-    marginTop: string
+    marginTop?: string
     nameButton: string
+    onClick?: () => void
 }
-const Button: FC<IButton> = ({marginTop, nameButton}) => {
-    return (
-        <div className="button" style={{marginTop: `${marginTop}`}}>
-            <a href="/home">{nameButton}</a>
-        </div>
-    )
+const Button: FC<IButton> = ({nameButton, onClick}) => {
+    return <button className="button-interactive" onClick={onClick}>{nameButton}</button>
 }
 
 export default Button

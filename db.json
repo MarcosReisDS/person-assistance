@@ -1,0 +1,72 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "login": "marcos",
+      "password": "1234"
+    },
+    {
+      "id": 2,
+      "login": "teste",
+      "password": "12345"
+    }
+  ],
+  "despesas_avulsas": [
+    {
+      "user_id": 1,
+      "id": 1,
+      "despesas": [
+        {
+          "name": "luz branca - shoppeee",
+          "mes": 3,
+          "ano": 2023,
+          "total_parcelas": 3,
+          "value_parcela": 20,
+          "total_value": 60,
+          "id": 1
+        },
+        {
+          "name": "macaccooooo",
+          "mes": 0,
+          "ano": 2023,
+          "total_parcelas": 3,
+          "value_parcela": 30,
+          "total_value": 30,
+          "id": 3
+        },
+        {
+          "name": "jjj",
+          "mes": 11,
+          "ano": 2023,
+          "total_parcelas": 3,
+          "value_parcela": 30,
+          "total_value": 30,
+          "id": 4
+        }
+      ]
+    }
+  ],
+  "despesas_fixas": [
+    {
+      "id": 1,
+      "user_id": 1,
+      "despesas": [
+        {
+          "name": "mambaareas",
+          "value": 39,
+          "id": 1
+        },
+        {
+          "name": "luz",
+          "value": 3,
+          "id": 2
+        },
+        {
+          "name": "dsds",
+          "value": 22,
+          "id": 3
+        }
+      ]
+    }
+  ]
+}

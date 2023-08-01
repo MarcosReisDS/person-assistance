@@ -5,9 +5,13 @@
             display: flex;
             justify-content: space-between;
 
-            &>a {
+
+            &>button {
                 color: #fff;
                 padding: 40px 20px;
+                border: none;
+                background-color: transparent;
+                display: flex;
 
                 &>svg {
                     transform: rotate(180deg);
@@ -28,6 +32,7 @@
                 display: flex;
                 flex-direction: column;
                 gap: 30px;
+
                 &>input {
                     width: 100%;
                     height: 60px;
@@ -36,9 +41,11 @@
                     box-shadow: 1px 3px 5px rgba(0, 0, 0, 25%);
                 }
             }
+
             &>.buttons {
                 display: flex;
                 margin-top: 90px;
+
                 &>a {
                     padding: 20px 30px;
                     background-color: #5E17EB;

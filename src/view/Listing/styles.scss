@@ -5,9 +5,12 @@
             display: flex;
             justify-content: space-between;
 
-            &>a {
+            &>button {
                 color: #fff;
                 padding: 40px 20px;
+                background-color: transparent;
+                border: none;
+                display: flex;
 
                 &>svg {
                     transform: rotate(180deg);
@@ -31,17 +34,113 @@
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
+                gap: 20px;
                 color: #fff;
 
-                &>select {
-                    width: 20%;
-                    height: 30px;
-                    border-radius: 20px;
-                    border: none;
-                    background-color: #5E17EB;
-                    box-shadow: 1px 3px 5px rgba(0, 0, 0, 25%);
-                    color: #fff;
-                    padding: 0px 10px;
+                &>div {
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-between;
+                    gap: 10px;
+
+                    &>div {
+                        position: relative;
+                        display: flex;
+
+                        &:nth-child(2) {
+                            justify-content: end;
+
+                            &>.arrow {
+                                right: 0px;
+                            }
+                        }
+
+                        &>input {
+                            width: 50%;
+                            height: 30px;
+                            border: none;
+                            border-radius: 20px;
+                            background-color: #5E17EB;
+                            box-shadow: 1px 3px 5px rgba(0, 0, 0, 25%);
+                            color: #fff;
+                            z-index: 99;
+                            position: relative;
+                            caret-color: transparent;
+                            padding-left: 5px;
+
+                            &:focus-visible {
+                                outline: none;
+                                background-image: none;
+                            }
+                        }
+
+                        &>.arrow {
+                            position: absolute;
+                            z-index: 99;
+                            top: 5px;
+                            right: 50%;
+                            font-size: 20px;
+                        }
+
+                        &>div {
+                            width: 50%;
+                            height: 30px;
+                            padding-top: 0px;
+                            padding-bottom: 0px;
+                            transition: height .3s;
+
+                            &.drop {
+                                height: 235px;
+                                padding-top: 30px;
+                                padding-bottom: 5px;
+                            }
+
+                            border-radius: 20px;
+                            border: none;
+                            background-color: #5E17EB;
+                            box-shadow: 1px 3px 5px rgba(0, 0, 0, 25%);
+                            color: #fff;
+                            position: absolute;
+                            top: 0px;
+                            overflow: auto;
+
+                            &>input {
+                                width: 100%;
+                                height: 40px;
+                                border-bottom: 1px solid #fff;
+                                border-top: transparent;
+                                border-left: transparent;
+                                border-right: transparent;
+                                color: #fff;
+                                caret-color: transparent;
+                                padding-left: 5px;
+                                background-color: transparent;
+
+                                &:last-child {
+                                    border: none;
+                                }
+
+                                &:focus-visible {
+                                    outline: none;
+                                    background-image: none;
+                                }
+                            }
+                        }
+                    }
+
+                    &>select {
+                        height: 30px;
+                        border-radius: 20px;
+                        border: none;
+                        background-color: #5E17EB;
+                        box-shadow: 1px 3px 5px rgba(0, 0, 0, 25%);
+                        color: #fff;
+                        padding: 0px 10px;
+                    }
+                }
+
+                &>span {
+                    text-align: right;
                 }
             }
 
@@ -49,6 +148,7 @@
                 display: flex;
                 flex-direction: column;
                 gap: 30px;
+
 
                 &>.table-total {
                     border-collapse: collapse;
@@ -67,50 +167,75 @@
                     }
                 }
 
-                &>.table-expenses {
+                &>.table-products {
                     width: 100%;
-                    border-collapse: collapse;
-                    text-align: center;
-                    color: #fff;
+                    height: 20vh;
 
-                    &>tr {
-
-                        &>th {
+                    &>.table {
+                        &.title {
                             border-bottom: 4px solid #fff;
-                            padding: 10px 5px;
-                            font-size: 15px;
-                            font-weight: normal;
-                            text-align: center;
+                            padding-bottom: 4px;
+                        }
 
-                            &:nth-child(2) {
-                                text-align: left;
+                        &.products {
+                            height: 100%;
+                            overflow-y: scroll;
+                            display: flex;
+                            flex-direction: column;
+
+                            &>div {
+                                border-bottom: 1px solid #fff;
+
+                                &>span {
+                                    padding: 10px 0px;
+                                }
                             }
                         }
 
-                        td {
-                            border-bottom: 1px solid #fff;
-                            padding: 10px 5px;
-                            font-size: 15px;
-                            font-weight: normal;
-                            text-align: center;
+                        &>div {
+                            width: 100%;
+                            display: flex;
 
-                            &:nth-child(2) {
-                                text-align: left;
+                            &>span {
+                                color: #fff;
+                                text-align: center;
+
+                                &:nth-child(1) {
+                                    width: 20%;
+                                }
+
+                                &:nth-child(2) {
+                                    width: 25%;
+                                }
+
+                                &:nth-child(3) {
+                                    width: 30%;
+                                }
+
+                                &:nth-child(4) {
+                                    width: 10%;
+                                }
+
+                                &:nth-child(5) {
+                                    width: 10%;
+                                }
+
+                                &:nth-child(6) {
+                                    width: 10%;
+                                }
                             }
                         }
                     }
                 }
+
                 &>.new {
+                    width: 100%;
                     display: flex;
                     justify-content: end;
-                    &>a {
-                        padding: 10px 30px;
-                        background-color: #5E17EB;
-                        border-radius: 10px;
-                        text-decoration: none;
-                        color: #fff;
-                        font-size: 15px;
-                        box-shadow: 1px 3px 5px rgba(0, 0, 0, 25%);
+
+                    &>div {
+                        width: 50%;
+                        height: 5vh;
                     }
                 }
             }

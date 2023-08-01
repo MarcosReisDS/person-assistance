@@ -14,6 +14,8 @@ const Router: FC<IRouter> = () => {
             <Route path="/register" element={<Access button="Registrar" cadastro="Tem cadastro?" urlCadastro="/login"/>} />
             <Route path="/home" element={<Home />} />
             <Route path="/produto" element={<Product />} />
+            <Route path="/produto/fixa/:id" element={<Product isEditType={'fixa'}/>} />
+            <Route path="/produto/avulsa/:id" element={<Product isEditType={'avulsa'}/>} />
             <Route path="/produtos" element={<Listing />} />
             <Route path="/configuracoes" element={<Settings />} />
         </Routes>

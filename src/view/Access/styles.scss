@@ -27,17 +27,21 @@
 
             &>span {
                 position: absolute;
-                bottom: 85px;
-                left: 60px;
-
-                &>a {
-                    color: black;
-                    text-decoration: none;
-                    border-bottom: 1px solid;
-                }
+                bottom: 105px;
+                right: 60px;
+                color: black;
+                text-decoration: none;
+                border-bottom: 1px solid;
             }
             &>.button-acess {
-                margin-top: 20px;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                margin-top: 40px;
+                &>div {
+                    width: 50%;
+                    height: 7vh;
+                }
             }
         }
     }

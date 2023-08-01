@@ -13,15 +13,11 @@
         padding: 0px 20px;
         font-size: 20px;
         position: relative;
-        
-        &.none {
+        &.select {
             caret-color: transparent;
-            z-index: 2;
-            &.date {
-                font-size: 18px;
-
-            }
+            z-index: 999;
         }
+
         &::placeholder {
             color: #DEDEDE;
         }
@@ -35,5 +31,13 @@
     &>.react-datepicker__tab-loop {
         position: absolute;
         z-index: 3;
+    }
+
+    &>.error {
+        color: red;
+        font-size: 15px;
+        position: absolute;
+        top: 60px;
+        left: 10px;
     }
 }
