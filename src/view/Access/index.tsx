@@ -11,9 +11,8 @@ import { setCookie } from "../../shared/utils/cookie";
 interface IAccess {
     urlCadastro: string
     cadastro: string
-    button: string
 }
-const Access: FC<IAccess> = ({ urlCadastro, cadastro, button }) => {
+const Access: FC<IAccess> = ({ urlCadastro, cadastro }) => {
 
     const navigate = useNavigate()
     const [user, setUser] = useState<{ login: string, password: string }>({
@@ -47,6 +46,16 @@ const Access: FC<IAccess> = ({ urlCadastro, cadastro, button }) => {
             })
     }
 
+    const handlePostUser = () => [
+        api.post({
+            property: "users",
+            body: user
+        }).then(({ data }) => {
+            setCookie("user", JSON.stringify(data), 1)
+            navigate("/home")
+        })
+    ]
+
     useEffect(() => {
         handleGetUser()
     }, [])
@@ -58,13 +67,32 @@ const Access: FC<IAccess> = ({ urlCadastro, cadastro, button }) => {
                     <img src={imgFinance} />
                 </div>
                 <div className="container-inputs">
-                    <Input onChange={(e) => setUser({ ...user, login: e.target.value })} type="text" placeholder="Nome..." input="common" errorMessage={errorMessage.login ? "Usuário não existe" : ""} />
-                    <Input onChange={(e) => setUser({ ...user, password: e.target.value })} type="text" placeholder="Senha..." input="common" errorMessage={errorMessage.password ? "Senha incorreta" : ""} />
-                    <span>Não tem cadastro?</span>
+                    {urlCadastro === "/login" ? (
+                        <>
+                            <Input onChange={(e) => setUser({ ...user, login: e.target.value })} type="text" placeholder="Nome..." input="common" />
+                            <Input onChange={(e) => setUser({ ...user, password: e.target.value })} type="text" placeholder="Senha..." input="common" />
+                        </>
+                    ) :
+                        urlCadastro === "/register" && (
+                            <>
+                                <Input onChange={(e) => setUser({ ...user, login: e.target.value })} type="text" placeholder="Nome..." input="common" errorMessage={errorMessage.login ? "Usuário não existe" : ""} />
+                                <Input onChange={(e) => setUser({ ...user, password: e.target.value })} type="text" placeholder="Senha..." input="common" errorMessage={errorMessage.password ? "Senha incorreta" : ""} />
+                            </>
+                        )
+                    }
+                    <span onClick={() => navigate(urlCadastro)}>{cadastro}</span>
                     <div className="button-acess">
-                        <div>
-                            <Button onClick={() => handleGetUser()} nameButton={button} />
-                        </div>
+                        {urlCadastro === "/login" ? (
+                            <div>
+                                <Button onClick={() => handlePostUser()} nameButton="Registrar" />
+                            </div>
+                        ) :
+                            urlCadastro === "/register" && (
+                                <div>
+                                    <Button onClick={() => handleGetUser()} nameButton="Acessar" />
+                                </div>
+                            )
+                        }
                     </div>
                 </div>
             </div>

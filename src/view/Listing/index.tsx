@@ -118,22 +118,22 @@ const Listing: FC<IListing> = () => {
                     <div className="date">
                         <div>
                             <div>
-                                <input value={months[paramsRequest.mes].name} onClick={() => dropMes ? setDropMes(false) : setDropMes(true)} />
+                                <input type="button" value={months[paramsRequest.mes].name} onClick={() => dropMes ? setDropMes(false) : setDropMes(true)} />
                                 <MdOutlineKeyboardArrowDown className="arrow" onClick={() => dropMes ? setDropMes(false) : setDropMes(true)} />
                                 <div className={`${dropMes ? "drop" : ""}`}>
                                     {months?.map((month, index) => (
-                                        <input type="text" value={month.name} key={index} onClick={(e) => { setParamsRequest({ ...paramsRequest, mes: month.value }); setDropMes(false) }} />
+                                        <input type="button" value={month.name} key={index} onClick={(e) => { setParamsRequest({ ...paramsRequest, mes: month.value }); setDropMes(false) }} />
                                     ))}
                                 </div>
                             </div>
                             <div>
-                                <input value={paramsRequest.ano} onClick={() => dropAno ? setDropAno(false) : setDropAno(true)} />
+                                <input type="button" value={paramsRequest.ano} onClick={() => dropAno ? setDropAno(false) : setDropAno(true)} />
                                 <MdOutlineKeyboardArrowDown className="arrow" onClick={() => dropAno ? setDropAno(false) : setDropAno(true)} />
                                 <div className={`${dropAno ? "drop" : ""}`}>
                                     {Array.from({ length: 5 }).map((item, index) => {
                                         const ano = new Date().getFullYear() + index
                                         return (
-                                            <input value={ano} key={index} onClick={() => { setParamsRequest({ ...paramsRequest, ano: ano }); setDropAno(false) }} />
+                                            <input type="button" value={ano} key={index} onClick={() => { setParamsRequest({ ...paramsRequest, ano: ano }); setDropAno(false) }} />
                                         )
                                     })}
                                 </div>

@@ -33,8 +33,8 @@ const Product: FC<IProduct> = ({ isEditType = null }) => {
     })
     const [apparenceDespesa, setApparenceDespesa] = useState<boolean>(false)
     const [apparenceMes, setApparenceMes] = useState<boolean>(false)
-    const [valueDespesa, setValueDespesa] = useState<string>("")
-    const [valueMes, setValueMes] = useState<string>("")
+    const [valueDespesa, setValueDespesa] = useState<string>("Tipo de despesa...")
+    const [valueMes, setValueMes] = useState<string>("Mês...")
     const [typeDespesa, setTypeDespesa] = useState<"fixa" | "avulsa" | null>(null)
 
     const values: { name: string, value: "fixa" | "avulsa" }[] = [
@@ -191,7 +191,7 @@ const Product: FC<IProduct> = ({ isEditType = null }) => {
                         <MdArrowDropDown className="arrow" />
                         <div className={apparenceDespesa ? "drop" : "drop none"}>
                             {values.map((item, index) => (
-                                <input type="text" placeholder={item.name} onClick={() => handleValueDespesa(item)} className="input-drop" key={index} />
+                                <input type="button" value={item.name} onClick={() => handleValueDespesa(item)} className="input-drop" key={index} />
                             ))}
                         </div>
                     </div>
@@ -203,11 +203,11 @@ const Product: FC<IProduct> = ({ isEditType = null }) => {
                                 </div>
                                 <div>
                                     <div className="container-select">
-                                        <Input value={idDespesa ? months[dataFieldsAvulsa?.mes].name : valueMes} type="text" onClick={() => setApparenceMes(!apparenceMes)} placeholder="Mês..." input="select" />
+                                        <Input type="button" value={idDespesa ? months[dataFieldsAvulsa?.mes].name : valueMes} onClick={() => setApparenceMes(!apparenceMes)} input="select" />
                                         <MdArrowDropDown className="arrow" />
                                         <div className={apparenceMes ? "drop" : "drop none"}>
                                             {months.map((item, index) => (
-                                                <input type="text" onClick={() => { handleSetDataFieldsAvulsa("mes", index); setApparenceMes(false); setValueMes(item.name) }} placeholder={item.name} className="input-drop" key={index} />
+                                                <input type="button" onClick={() => { handleSetDataFieldsAvulsa("mes", index); setApparenceMes(false); setValueMes(item.name) }} value={item.name} className="input-drop" key={index} />
                                             ))}
                                         </div>
                                     </div>
