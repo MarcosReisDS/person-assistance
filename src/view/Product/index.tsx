@@ -187,7 +187,7 @@ const Product: FC<IProduct> = ({ isEditType = null }) => {
                 </div>
                 <div className="buttons">
                     <div>
-                        <Input type="text" value={valueDespesa} placeholder="Tipo de despesa..." input="select" onClick={() => setApparenceDespesa(!apparenceDespesa)} />
+                        <Input type="button" value={valueDespesa} placeholder="Tipo de despesa..." input="select" onClick={() => setApparenceDespesa(!apparenceDespesa)} />
                         <MdArrowDropDown className="arrow" />
                         <div className={apparenceDespesa ? "drop" : "drop none"}>
                             {values.map((item, index) => (
