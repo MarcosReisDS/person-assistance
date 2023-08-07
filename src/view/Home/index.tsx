@@ -1,16 +1,17 @@
 import { FC } from "react"
+import { deleteCookie } from "../../shared/utils/cookie"
 import { VscSettingsGear } from "react-icons/vsc"
 import { MdArrowForwardIos } from "react-icons/md"
+import { useNavigate, useParams } from "react-router-dom"
 import imgFinance from "../../shared/images/person.png"
-import "./styles.scss"
 import Button from "../../shared/components/Button"
-import { deleteCookie, getCookie } from "../../shared/utils/cookie"
-import { useNavigate } from "react-router-dom"
+import "./styles.scss"
 
 interface IHome { }
 const Home: FC<IHome> = () => {
 
     const navigate = useNavigate()
+    const {id: idUser} = useParams()
 
     const handleLogout = () => {
         deleteCookie("user")
@@ -20,7 +21,7 @@ const Home: FC<IHome> = () => {
     return (
         <div className="container-home">
             <div className="container">
-                <button className="setting" onClick={() => navigate("/configuracoes")}>
+                <button className="setting" onClick={() => navigate(`/configuracoes/${idUser}`)}>
                     <VscSettingsGear size={30} color="#000" />
                 </button>
                 <div className="logo">

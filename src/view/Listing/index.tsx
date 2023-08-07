@@ -2,16 +2,15 @@ import { FC, useEffect, useState } from "react";
 import { MdArrowForwardIos, MdOutlineKeyboardArrowDown, MdRemoveRedEye } from "react-icons/md"
 import { FaEdit } from "react-icons/fa"
 import { PiCheckCircleBold } from "react-icons/pi"
-import imgFinance from "../../shared/images/person.png"
-import "./styles.scss"
 import { DespesasAvulsa, DespesaFixa } from "../../shared/utils/types";
 import { months } from "../../shared/utils/statics";
 import { handleSetParamsUrl } from "../../shared/utils/helpers";
-import api from "../../shared/api";
 import { useNavigate } from "react-router-dom";
+import imgFinance from "../../shared/images/person.png"
+import api from "../../shared/api";
 import Button from "../../shared/components/Button";
 import Modal from "../../shared/components/Modal";
-import Product from "../Product";
+import "./styles.scss"
 
 interface IListing { }
 const Listing: FC<IListing> = () => {
@@ -54,7 +53,6 @@ const Listing: FC<IListing> = () => {
                     }
                     return teste
                 }
-
             })
             setDespesasAvulsas(data[0])
         } else {
@@ -89,8 +87,6 @@ const Listing: FC<IListing> = () => {
         return value
     }
 
-
-
     const handleSetTypeDespesa = (type: "fixas" | "avulsas", index: any) => {
         setTypeDespesa(type)
         setIndexDespesa(index)
@@ -111,7 +107,7 @@ const Listing: FC<IListing> = () => {
         <div className="container-listing">
             <div className="container">
                 <div className="logo">
-                    <button onClick={() => navigate("/home")}><MdArrowForwardIos size={50} /></button>
+                    <button onClick={() => navigate(`/home/${paramsRequest.user_id}`)}><MdArrowForwardIos size={50} /></button>
                     <img src={imgFinance} />
                 </div>
                 <div className="separet">

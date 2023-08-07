@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 import "./styles.scss"
 
 interface IInput {
@@ -9,12 +9,13 @@ interface IInput {
     onClick?: () => void
     onChange?: (e: any) => void
     errorMessage?: string
+    Disabled?: any
 }
-const Input: FC<IInput> = ({ placeholder, type, input, onClick, value, onChange, errorMessage = "" }) => {
+const Input: FC<IInput> = ({ placeholder, type, input, onClick, value, onChange, errorMessage = "", Disabled }) => {
 
     const change = () => {
         if (input === "common")
-            return <input className="input" value={value} type={type} placeholder={placeholder} onChange={onChange} />
+            return <input className="input" value={value} type={type} placeholder={placeholder} onChange={onChange} disabled={Disabled} />
 
         if (input === "select")
             return <input className="input select" value={value} type={type} placeholder={placeholder} onClick={onClick} onKeyDown={(e) => e.preventDefault()} />

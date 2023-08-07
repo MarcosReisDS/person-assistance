@@ -5,9 +5,10 @@ interface IButton {
     marginTop?: string
     nameButton: string
     onClick?: () => void
+    colorOptional?: string
 }
-const Button: FC<IButton> = ({nameButton, onClick}) => {
-    return <button className="button-interactive" onClick={onClick}>{nameButton}</button>
+const Button: FC<IButton> = ({nameButton, onClick, colorOptional}) => {
+    return <button className="button-interactive" style={{backgroundColor: `${colorOptional}`}} onClick={onClick}>{nameButton}</button>
 }
 
 export default Button

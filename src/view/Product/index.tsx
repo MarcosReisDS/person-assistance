@@ -1,14 +1,15 @@
 import { FC, useEffect, useState } from "react";
 import { MdArrowDropDown, MdArrowForwardIos } from "react-icons/md"
-import imgFinance from "../../shared/images/person.png"
-import { months } from "../../shared/utils/statics";
-import "./styles.scss"
-import Input from "../../shared/components/Input";
-import api from "../../shared/api";
-import { DespesaAvulsa, DespesaFixa } from "../../shared/utils/types";
+import { DespesaAvulsa } from "../../shared/utils/types";
 import { useNavigate } from "react-router-dom";
-import Button from "../../shared/components/Button";
 import { useParams } from 'react-router-dom';
+import { months } from "../../shared/utils/statics";
+import imgFinance from "../../shared/images/person.png"
+import api from "../../shared/api";
+import Input from "../../shared/components/Input";
+import Button from "../../shared/components/Button";
+import "./styles.scss"
+
 
 
 interface IProduct {
@@ -30,6 +31,11 @@ const Product: FC<IProduct> = ({ isEditType = null }) => {
     const [dataFieldsFixa, setDataFieldsFixa] = useState<{ name: string, value: number }>({
         name: "",
         value: 0
+    })
+    const currentUrl = new URL(window.location.href)
+    const [paramsRequest, setParamsRequest] = useState<any>({
+        mes: currentUrl.searchParams.get("mes") || new Date().getMonth(),
+        ano: currentUrl.searchParams.get("ano") || new Date().getFullYear()
     })
     const [apparenceDespesa, setApparenceDespesa] = useState<boolean>(false)
     const [apparenceMes, setApparenceMes] = useState<boolean>(false)
@@ -69,45 +75,23 @@ const Product: FC<IProduct> = ({ isEditType = null }) => {
     }
 
     const handlePostProductsAvulso = async () => {
-        // if (idDespesa) {
-        //     api.get({
-        //         property: "despesas_avulsas",
-        //         query: {
-        //             id: Number(idDespesa)
-        //         }
-        //     }).then(({ data }) => {
-        //         if (idDespesa) {
-        //             data = { ...data, ...dataFieldsAvulsa }
-        //         }
-
-        //         api.put({
-        //             property: "despesas_avulsas",
-        //             body: data
-        //         }).then(() => {
-        //             navigate("/produtos")
-        //         })
-        //     })
-
-        // } else {
-        //     api.post({
-        //         property: "despesas_avulsas",
-        //         body: dataFieldsAvulsa
-        //     }).then(() => {
-        //         navigate("/produtos")
-        //     })
-        // }
-
         api.get({
-            property: "despesas_avulsas"
+            property: "despesas_avulsas",
+            query: paramsRequest
 
         }).then(({ data }) => {
-            const lastId = data[0].despesas[data[0].despesas.length - 1].id
-            if (idDespesa) {
-                data[0].despesas = data[0].despesas.map((despesa: any) => {
-                    return despesa.id == idDespesa ? { ...dataFieldsAvulsa, id: Number(idDespesa) } : despesa
-                })
+            if (data[0].despesas.length === 0) {
+                data[0].despesas.push({ ...dataFieldsAvulsa, id: 1 })
             } else {
-                data[0].despesas.push({ ...dataFieldsAvulsa, id: lastId + 1 })
+                const lastId = data[0].despesas[data[0].despesas.length - 1].id
+
+                if (idDespesa) {
+                    data[0].despesas = data[0].despesas.map((despesa: any) => {
+                        return despesa.id == idDespesa ? { ...dataFieldsAvulsa, id: Number(idDespesa) } : despesa
+                    })
+                } else {
+                    data[0].despesas.push({ ...dataFieldsAvulsa, id: lastId + 1 })
+                }
             }
 
             api.put({
@@ -121,16 +105,22 @@ const Product: FC<IProduct> = ({ isEditType = null }) => {
 
     const handlePostProductsFixo = async () => {
         api.get({
-            property: "despesas_fixas"
+            property: "despesas_fixas",
+            query: paramsRequest
 
         }).then(({ data }) => {
-            const lastId = data[0].despesas[data[0].despesas.length - 1].id
-            if (idDespesa) {
-                data[0].despesas = data[0].despesas.map((despesa: any) => {
-                    return despesa.id == idDespesa ? { ...dataFieldsFixa, id: Number(idDespesa) } : despesa
-                })
+            if (data[0].despesas.length === 0) {
+                data[0].despesas.push({ ...dataFieldsFixa, id: 1 })
             } else {
-                data[0].despesas.push({ ...dataFieldsFixa, id: lastId + 1 })
+                const lastId = data[0].despesas[data[0].despesas.length - 1].id
+
+                if (idDespesa) {
+                    data[0].despesas = data[0].despesas.map((despesa: any) => {
+                        return despesa.id == idDespesa ? { ...dataFieldsFixa, id: Number(idDespesa) } : despesa
+                    })
+                } else {
+                    data[0].despesas.push({ ...dataFieldsFixa, id: lastId + 1 })
+                }
             }
 
             api.put({

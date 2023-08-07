@@ -1,8 +1,8 @@
 import { FC, useState, useEffect } from "react";
 import { AiOutlineClose } from "react-icons/ai"
+import { months } from "../../../shared/utils/statics";
 import api from "../../api";
 import "./styles.scss"
-import { months } from "../../../shared/utils/statics";
 
 interface IModal {
     onClick?: () => void;

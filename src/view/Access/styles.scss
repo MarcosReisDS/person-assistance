@@ -12,7 +12,6 @@
             &>img {
                 width: 88%;
                 height: 100%;
-
             }
         }
 
@@ -33,11 +32,13 @@
                 text-decoration: none;
                 border-bottom: 1px solid;
             }
+
             &>.button-acess {
                 width: 100%;
                 display: flex;
                 justify-content: center;
                 margin-top: 40px;
+
                 &>div {
                     width: 50%;
                     height: 7vh;

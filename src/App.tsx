@@ -1,8 +1,8 @@
 import { FC, useEffect } from 'react';
-import './App.css';
-import Router from './shared/router';
 import { getCookie } from './shared/utils/cookie';
 import { useNavigate } from 'react-router-dom';
+import Router from './shared/router';
+import './App.css';
 
 interface IApp { }
 const App: FC<IApp> = () => {

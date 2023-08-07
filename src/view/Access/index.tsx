@@ -1,12 +1,11 @@
 import { FC, useEffect, useState } from "react";
-import imgFinance from "../../shared/images/person.png"
-import "./styles.scss"
-import Button from "../../shared/components/Button";
-import Input from "../../shared/components/Input";
-import api from "../../shared/api";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { setCookie } from "../../shared/utils/cookie";
+import imgFinance from "../../shared/images/person.png"
+import api from "../../shared/api";
+import Input from "../../shared/components/Input";
+import Button from "../../shared/components/Button";
+import "./styles.scss"
 
 interface IAccess {
     urlCadastro: string
@@ -36,7 +35,7 @@ const Access: FC<IAccess> = ({ urlCadastro, cadastro }) => {
                     const userLogged = data[0]
                     if (user.password === userLogged.password) {
                         setCookie("user", JSON.stringify(userLogged), 1)
-                        navigate("/home")
+                        navigate(`/home/${userLogged.id}`)
                     } else {
                         setErrorMessage({ ...errorMessage, password: true })
                     }
@@ -46,15 +45,33 @@ const Access: FC<IAccess> = ({ urlCadastro, cadastro }) => {
             })
     }
 
-    const handlePostUser = () => [
+    const handlePostUser = () => {
         api.post({
             property: "users",
             body: user
         }).then(({ data }) => {
             setCookie("user", JSON.stringify(data), 1)
-            navigate("/home")
+            navigate(`/home/${data.id}`)
+
+            api.post({
+                property: "despesas_avulsas",
+                body: {
+                    id: data.id,
+                    user_id: data.id,
+                    despesas: []
+                }
+            })
+
+            api.post({
+                property: "despesas_fixas",
+                body: {
+                    id: data.id,
+                    user_id: data.id,
+                    despesas: []
+                }
+            })
         })
-    ]
+    }
 
     useEffect(() => {
         handleGetUser()
