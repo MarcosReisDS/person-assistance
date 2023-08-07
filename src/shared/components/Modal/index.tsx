@@ -20,14 +20,13 @@ const Modal: FC<IModal> = ({ onClick, type, index }) => {
         })
             .then(({ data }) => {
                 if (type == "avulsas") {
-                    setDespesa(data[0].despesas.filter((product: any) => product.id === index))
+                    setDespesa(data[index].despesas.filter((product: any) => product.id === index))
                 }
                 if (type == "fixas") {
-                    setDespesa(data[0].despesas.filter((product: any) => product.id === index))
+                    setDespesa(data[index].despesas.filter((product: any) => product.id === index))
                 }
             })
     }
-
     useEffect(() => {
         handleGetProducts()
     }, [])
