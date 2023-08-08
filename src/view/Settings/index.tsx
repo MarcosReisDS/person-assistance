@@ -23,6 +23,7 @@ const Settings: FC<ISettings> = () => {
             data = data.filter((item: any) => item.id == idUser)
             setUserLogin(data[0].login)
             setUserPassword(data[0].password)
+            setEdit(false)
         })
     }
 
@@ -74,7 +75,7 @@ const Settings: FC<ISettings> = () => {
                                     <Button nameButton="salvar" colorOptional="green" onClick={() => handleEdit()} />
                                 </div>
                                 <div>
-                                    <Button nameButton="cancelar" colorOptional="red" onClick={() => setEdit(false)} />
+                                    <Button nameButton="cancelar" colorOptional="red" onClick={() => handleGetUser()} />
                                 </div>
                             </>
                         ) :
