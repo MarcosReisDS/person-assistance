@@ -132,11 +132,48 @@ const Product: FC<IProduct> = ({ isEditType = null }) => {
         })
     }
 
+    const handleDelete = async (type: "fixa" | "avulsa") => {
+        if (type === "fixa") {
+            api.get({
+                property: "despesas_fixas",
+                query: paramsRequest
+
+            }).then(({ data }) => {
+                data[0].despesas = data[0].despesas.filter((despesa: any) => despesa.id != idDespesa)
+
+                api.put({
+                    property: "despesas_fixas",
+                    body: data[0]
+                }).then(() => {
+                    navigate("/produtos")
+                })
+            })
+        }
+
+        if (type === "avulsa") {
+            api.get({
+                property: "despesas_avulsas",
+                query: paramsRequest
+
+            }).then(({ data }) => {
+                data[0].despesas = data[0].despesas.filter((despesa: any) => despesa.id != idDespesa)
+
+                api.put({
+                    property: "despesas_avulsas",
+                    body: data[0]
+                }).then(() => {
+                    navigate("/produtos")
+                })
+            })
+        }
+    }
+
     useEffect(() => {
         if (isEditType && idDespesa) {
             if (isEditType === 'fixa') {
                 api.get({
-                    property: 'despesas_fixas'
+                    property: 'despesas_fixas',
+                    query: paramsRequest
                 }).then(({ data }) => {
                     const despesa = data[0]?.despesas?.find((despesa: any) => despesa?.id == idDespesa)
                     setDataFieldsFixa({
@@ -150,7 +187,8 @@ const Product: FC<IProduct> = ({ isEditType = null }) => {
 
             if (isEditType === 'avulsa') {
                 api.get({
-                    property: 'despesas_avulsas'
+                    property: 'despesas_avulsas',
+                    query: paramsRequest
                 }).then(({ data }) => {
                     const despesa = data[0]?.despesas?.find((despesa: any) => despesa?.id == idDespesa)
                     setDataFieldsAvulsa({
@@ -218,11 +256,21 @@ const Product: FC<IProduct> = ({ isEditType = null }) => {
                     {typeDespesa === "fixa" && (
                         <div className="new-product">
                             <Button nameButton={idDespesa ? "Editar" : "Criar"} onClick={() => handlePostProductsFixo()} />
+                            {idDespesa ? (
+                                <Button nameButton="Excluir" colorOptional="red" onClick={() => handleDelete("fixa")} />
+                            ) :
+                                null
+                            }
                         </div>
                     )}
                     {typeDespesa === "avulsa" && (
                         <div className="new-product">
                             <Button nameButton={idDespesa ? "Editar" : "Criar"} onClick={() => handlePostProductsAvulso()} />
+                            {idDespesa ? (
+                                <Button nameButton="Excluir" colorOptional="red" onClick={() => handleDelete("avulsa")} />
+                            ) :
+                                null
+                            }
                         </div>
                     )}
                 </div>

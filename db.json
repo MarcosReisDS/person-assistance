@@ -1,5 +1,59 @@
 {
-  "users": [],
-  "despesas_avulsas": [],
-  "despesas_fixas": []
+  "users": [
+    {
+      "login": "marcos",
+      "password": "123",
+      "id": 1
+    },
+    {
+      "login": "teste",
+      "password": "123",
+      "id": 2
+    },
+    {
+      "login": "marquinhos",
+      "password": "123",
+      "id": 3
+    }
+  ],
+  "despesas_avulsas": [
+    {
+      "id": 1,
+      "user_id": 1,
+      "despesas": []
+    },
+    {
+      "id": 2,
+      "user_id": 2,
+      "despesas": []
+    },
+    {
+      "id": 3,
+      "user_id": 3,
+      "despesas": []
+    }
+  ],
+  "despesas_fixas": [
+    {
+      "id": 1,
+      "user_id": 1,
+      "despesas": []
+    },
+    {
+      "id": 2,
+      "user_id": 2,
+      "despesas": [
+        {
+          "name": "sas",
+          "value": 12,
+          "id": 1
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "user_id": 3,
+      "despesas": []
+    }
+  ]
 }
